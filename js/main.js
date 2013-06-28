@@ -23,11 +23,20 @@
         var gameTime = realTime + Math.sin(realTime / 1000) * 2000;
         // console.log("gameTime", realTime, gameTime)
 
-        var angle = (gameTime * .001) % 2 * Math.PI;
+        // C
+        for (var i = 0; i < 50; i++) {
+            var angle = (gameTime * .002) % 2 * Math.PI - i * Math.PI / 8;
 
-        context.beginPath();
-        context.arc(75, 75, 50, angle, angle + 3 * Math.PI / 4, true);
-        context.stroke();
+            context.beginPath();
+            context.arc(
+                CANVAS_WIDTH / 2,
+                CANVAS_HEIGHT / 2,
+                i * 5/*- Math.exp(realTime / 1000 % .5) * 10*/,
+                angle,
+                angle + 3 * Math.PI / 4, true
+            );
+            context.stroke();
+        }
     }
 
     setInterval(function() {
