@@ -14,27 +14,28 @@
 
     function update(dt) {
         realTime += dt;
+
     }
 
     function draw() {
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        // var gameTime = realTime - Math.floor(realTime / 1000) * 200
-        var gameTime = realTime + Math.sin(realTime / 1000) * 2000;
-        // console.log("gameTime", realTime, gameTime)
-
-        // C
-        for (var i = 0; i < 50; i++) {
-            var angle = (gameTime * .002) % 2 * Math.PI - i * Math.PI / 8;
+        // Spiral
+        for (var i = 0; i < 30; i++) {
+            var iTime = realTime - i * 50;
+            var spiralTime = iTime + Math.sin(iTime / 1000) * 3000;
+            var angle = (spiralTime * .001) % 2 * Math.PI - i * Math.PI / 8;
+            var phase = (Math.floor(iTime / 100) + i) % 5;
 
             context.beginPath();
             context.arc(
                 CANVAS_WIDTH / 2,
                 CANVAS_HEIGHT / 2,
-                i * 5/*- Math.exp(realTime / 1000 % .5) * 10*/,
+                i * 5,
                 angle,
                 angle + 3 * Math.PI / 4, true
             );
+            context.lineWidth = phase;
             context.stroke();
         }
     }
