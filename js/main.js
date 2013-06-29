@@ -33,7 +33,8 @@
                 CANVAS_HEIGHT / 2,
                 i * 5,
                 angle,
-                angle + 3 * Math.PI / 4, true
+                angle + Math.PI,
+                true
             );
             context.lineWidth = phase;
             context.stroke();
